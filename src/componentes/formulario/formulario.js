@@ -1,5 +1,6 @@
 import "./formulario.css"
 import CampoTexto from "../campoTexto/campoTexto"
+import ListaOpciones from "../listaOpciones/listaOpciones"
 
 const Formulario = () =>{
     return <section className="formulario">
@@ -9,6 +10,7 @@ const Formulario = () =>{
             <CampoTexto label="Nombre" hint="Ingresar nombre"/>
             <CampoTexto label="Puesto" hint="Ingresar puesto"/>
             <CampoTexto label="Foto" hint="Ingresar enlace de foto"/>
+            <ListaOpciones/>
         </form>
 
     </section>
