@@ -4,14 +4,20 @@ import "./listaOpciones.css"
 //    
 //})
 
-function ListaOpciones(){
-    let index = 0;
-    const equipos = ["Programacion", "Front End", "Data Science", "DevOps", "X y Diseño", "Movil", "Innovación y Gestión"];
+function ListaOpciones(props){
+
+      
+    const manejarCambio = (event) => {
+        
+        props.setValor(event.target.value)
+    }
+    
     return <div className="lista__opciones">
         <label>Equipos</label>
-        <select>
-            {equipos.map((equipo, index) =>{
-                return <option key={index}>{equipo}</option>
+        <select value={props.valor} onChange={manejarCambio}> 
+            <option value="" disabled defaultValue="" hidden>Seleccionar Equipo</option>
+            {props.equipos.map((equipo, index) =>{
+                return <option key={index} value={equipo}>{equipo}</option>
             })}
         </select>
     </div>

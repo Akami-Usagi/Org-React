@@ -1,16 +1,36 @@
+import { useState } from "react"
 import "./formulario.css"
 import CampoTexto from "../campoTexto/campoTexto"
 import ListaOpciones from "../listaOpciones/listaOpciones"
+import Boton from "../boton/boton"
 
-const Formulario = () =>{
+const Formulario = (props) =>{
+
+    const [nombre, setNombre] = useState("");
+    const [puesto, setPuesto] = useState("");
+    const [foto, setFoto] = useState("");
+    const [equipo, setEquipo] = useState("");
+
+    const manejarEnvio = (event) =>{
+        event.preventDefault();
+        let datosEnviar = {
+            nombre: nombre,
+            puesto: puesto,
+            foto: foto,
+            equipo: equipo
+        }
+        
+    }
+
     return <section className="formulario">
 
-        <form>
+        <form onSubmit={manejarEnvio}>
             <h2>Rellena el formulario para crear el colaborador</h2>
-            <CampoTexto label="Nombre" hint="Ingresar nombre"/>
-            <CampoTexto label="Puesto" hint="Ingresar puesto"/>
-            <CampoTexto label="Foto" hint="Ingresar enlace de foto"/>
-            <ListaOpciones/>
+            <CampoTexto label="Nombre" hint="Ingresar nombre" required valor={nombre} setValor={setNombre}/>
+            <CampoTexto label="Puesto" hint="Ingresar puesto" required valor={puesto} setValor={setPuesto}/>
+            <CampoTexto label="Foto" hint="Ingresar enlace de foto" required valor={foto} setValor={setFoto}/>
+            <ListaOpciones valor={equipo} setValor={setEquipo} equipos={props.equipos}/>
+            <Boton>Crear</Boton>
         </form>
 
     </section>
