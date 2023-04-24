@@ -3,17 +3,31 @@ import Header from './componentes/header/header';
 import Formulario from './componentes/formulario/formulario';
 import MiOrg from './componentes/miOrg/miOrg';
 import Equipo from './componentes/equipo/equipo';
+import Footer from './componentes/footer/footer';
 import './App.css';
 
 
 function App() {
 
   const [mostrarFormulario, actualizarMostrar] = useState(false)
+  const [colaboradores, setColaboradores] = useState([{
+    equipo: "Programado Por",
+    nombre: "Camilo Arango",
+    Puesto: "Estudiante",
+    foto: "https://github.com/Akami-Usagi.png"
+  }])
 
   const cambiarMostrar = () =>{
     actualizarMostrar(!mostrarFormulario)
   }
-  //{mostrarFormulario && <Formulario/>} 
+  
+
+  //registrar colaborador
+  const registrarColaborador = (colaborador) =>{
+    console.log("nuevo colaborador", colaborador);
+    //spread operator
+    setColaboradores([...colaboradores, colaborador])
+  }
 
   //lista de equipos
   const equipos = [
@@ -61,15 +75,17 @@ function App() {
     
   ];
 
-
+  //{mostrarFormulario && <Formulario/>} tambien se puede
   return (
     <div>
 
       <Header/>
-      {mostrarFormulario === true ? <Formulario equipos={equipos.map((equipo) => equipo.titulo)}/> : <></>}
-      <MiOrg cambiarMostrar = {cambiarMostrar}/>
-      {equipos.map((equipo, index) => <Equipo datos={equipo} key={index}/>)}
+      {mostrarFormulario === true ? <Formulario equipos={equipos.map((equipo) => equipo.titulo)} registrarColaborador={registrarColaborador}/> : <></>} 
       
+      <MiOrg cambiarMostrar = {cambiarMostrar}/>
+      {equipos.map((equipo, index) => <Equipo datos={equipo} key={index} colaboradores={colaboradores.filter(colaborador => colaborador.equipo === equipo.titulo)}/>)}
+      
+      <Footer/>
     </div>
   );
 }
