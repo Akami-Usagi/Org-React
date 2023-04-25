@@ -4,6 +4,7 @@
     box-sizing: border-box;
     text-align: center;
     font-size: 32px;
+    position: relative;
     
 }
 
@@ -19,4 +20,12 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: space-evenly;
+}
+
+.input__color{
+    position: absolute;
+    top: 20px;
+    right: 50px;
+    border: none;
+    border-radius: 100%;
 }

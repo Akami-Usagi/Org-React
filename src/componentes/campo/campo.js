@@ -1,25 +1,27 @@
-import { useState } from "react";
-import "./campoTexto.css"
+import "./campo.css"
 
-function CampoTexto(props){
-
-   
+function Campo(props){
+  
 
     const placeholder = props.hint + "...";
+
+    //destructuracion
+    const {type = "text"} = props
 
     const manejarCambio = (event) =>{
         props.setValor(event.target.value)
                
     }
 
-    return <div className="campo__texto">
+    return <div className={`campo campo__${type}`}>
         <label>{props.label}</label>
         <input 
         placeholder={placeholder} 
         required={props.required} 
         value={props.valor} 
+        type={type}
         onChange={manejarCambio}/>
     </div>
 }
 
-export default CampoTexto
+export default Campo
